@@ -5,6 +5,7 @@
 #include "shader_s.h"
 #include "RectangleMesh.h"
 
+#include <math.h>
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -56,9 +57,10 @@ int main()
     // build and compile our shader program
     // ------------------------------------
     Shader ourShader("resources/shaders/vertex.glsl", "resources/shaders/fragment.glsl"); // you can name your shader files however you like
-    RectangleMesh rect1(window, ourShader.ID, glm::vec2(0.0f, 0.0f), 100, 100, RED);
-    RectangleMesh rect2(window, ourShader.ID, glm::vec2(100.0f, -100.0f), 100, 100, GREEN);
-    RectangleMesh rect3(window, ourShader.ID, glm::vec2(200.0f, -200.0f), 100, 100, BLUE);
+    // Shader ourShader("../resources/shaders/vertex.glsl", "../resources/shaders/fragment.glsl"); // you can name your shader files however you like
+    RectangleMesh rect1(window, ourShader.ID, glm::vec2(0.0f, 0.0f), 400, 100, WHITE);
+    RectangleMesh rect2(window, ourShader.ID, glm::vec2(100.0f, -100.0f), 400, 100, BLUE);
+    RectangleMesh rect3(window, ourShader.ID, glm::vec2(200.0f, -200.0f), 400, 100, RED);
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     // glBindVertexArray(0);
@@ -84,15 +86,13 @@ int main()
         // render the triangle
         ourShader.use();
 
-        float mv = (sin((float)glfwGetTime()) + 1.0f) / 2.0f;
-
-        // rect1.move(glm::vec2(mv, 0.0f));
+        rect1.move(glm::vec2((sin((float)glfwGetTime() - 0.05f * 3.14) + 1.0f) / 20.0f, 0.0f));
         rect1.draw();
 
-        // rect1.move(glm::vec2(0.0f, -mv));
+        rect2.move(glm::vec2((sin((float)glfwGetTime() - 0.25f * 3.14) + 1.0f) / 20.0f, 0.0f));
         rect2.draw();
 
-        // rect1.move(glm::vec2(mv, -mv));
+        rect2.move(glm::vec2((sin((float)glfwGetTime()) + 1.0f) / 20.0f, 0.0f));
         rect3.draw();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
