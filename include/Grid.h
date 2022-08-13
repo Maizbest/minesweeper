@@ -17,6 +17,7 @@ private:
     unsigned int width, height;
     float cellWidth = 50.0f, cellHeight = 50.0f;
     uint32_t clickedx, clickedy;
+    bool clicked = false;
 
 public:
     Grid(GLFWwindow *window, float width, float height);
@@ -53,8 +54,9 @@ void Grid::draw(Shader &shader)
             // std::cout << col << " " << row << " at " << nextPos.x << " " << nextPos.y << std::endl;
             auto transform = model;
             transform = glm::translate(transform, glm::vec3(nextPos, 0.0f));
-            transform = glm::scale(transform, glm::vec3(this->cellWidth * 0.95, this->cellHeight * 0.95, 1.0f));
+            transform = glm::scale(transform, glm::vec3(this->cellWidth, this->cellHeight, 1.0f));
             shader.setMat4("model", transform);
+            shader.setBool("accent", clicked && this->clickedx == col && this->clickedy == row);
             cellMesh->draw(shader);
 
             nextPos = glm::vec2(nextPos.x + this->cellWidth, nextPos.y);
@@ -76,10 +78,22 @@ void Grid::handleMouseClick(float x, float y)
     // uint32_t ux = (uint32_t) x, uy = (uint32_t) y;
     // uint32_t uw = (uint32_t) this->cellWidth, uh = (uint32_t) this->cellHeight;
 
-    this->clickedx = x / this->cellWidth;
-    this->clickedy = y / this->cellHeight;
+    uint32_t newx = (x + 1) / this->cellWidth;
+    uint32_t newy = (1 - y) / this->cellHeight;
 
-    std::cout << "Grid handled mouse click event at (" << this->clickedx << ", " << this->clickedy << ")" << std::endl; 
+    this->clicked = newx != this->clickedx || newy != this->clickedy;
+
+    if (clicked)
+    {
+        this->clickedx = newx;
+        this->clickedy = newy;
+        std::cout << "Grid handled mouse click on " << (this->clicked ? "new" : "old") << " event at (" << this->clickedx << ", " << this->clickedy << ")" << std::endl;
+    }
+    else
+    {
+        this->clickedx = -1;
+        this->clickedy = -1;
+    }
 }
 
 #endif
