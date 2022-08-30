@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef A960CC21_227E_4489_B43F_0ABD1B998DAE
+#define A960CC21_227E_4489_B43F_0ABD1B998DAE
 
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
@@ -11,4 +11,4 @@ namespace utils
     void print(glm::vec2);
 };
 
-#endif
+#endif /* A960CC21_227E_4489_B43F_0ABD1B998DAE */

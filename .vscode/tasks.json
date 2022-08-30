@@ -2,7 +2,7 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
+            "label": "C++ build solution",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-g",
@@ -15,7 +15,7 @@
                 "-fdiagnostics-color=always",
                 "-static",
                 "-o",
-                "${workspaceFolder}\\minesweeper.exe",
+                "${workspaceFolder}\\build\\minesweeper.exe",
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

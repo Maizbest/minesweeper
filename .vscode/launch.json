@@ -8,13 +8,13 @@
             "name": "(Windows) Запустить",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/minesweeper.exe",
+            "program": "${workspaceFolder}\\build\\minesweeper.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "console": "externalTerminal",
-            "preLaunchTask": "C/C++: g++.exe build active file"
+            "preLaunchTask": "C++ build solution"
         }
 
     ]

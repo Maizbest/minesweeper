@@ -1,5 +1,5 @@
-#ifndef SHADER_H
-#define SHADER_H
+#ifndef D005C26F_C593_4FEF_97C1_085ADCA68645
+#define D005C26F_C593_4FEF_97C1_085ADCA68645
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -25,6 +25,7 @@ public:
         if (!std::filesystem::exists(vertexPath)) {
             std::cout << "Fragment shader not found at " << std::filesystem::canonical(fragmentPath);
         }
+        
 
         // 1. retrieve the vertex/fragment source code from filePath
         std::string vertexCode;
@@ -52,7 +53,6 @@ public:
         }
         catch (std::ifstream::failure& e)
         {
-            
             std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ: " << e.what() << std::endl;
         }
         const char* vShaderCode = vertexCode.c_str();
@@ -60,6 +60,7 @@ public:
         // 2. compile shaders
         unsigned int vertex, fragment;
         // vertex shader
+        std::cout << "shader creation" << std::endl;
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);
@@ -78,6 +79,7 @@ public:
         // delete the shaders as they're linked into our program now and no longer necessary
         glDeleteShader(vertex);
         glDeleteShader(fragment);
+        std::cout << "shader created." << std::endl;
     }
     // activate the shader
     // ------------------------------------------------------------------------
@@ -134,4 +136,4 @@ private:
         }
     }
 };
-#endif
+#endif /* D005C26F_C593_4FEF_97C1_085ADCA68645 */
