@@ -1,5 +1,5 @@
-#ifndef __MOUSECLICKHANDLER_H__
-#define __MOUSECLICKHANDLER_H__
+#ifndef E0C10680_6501_4EE9_B791_9DBC98B3C91C
+#define E0C10680_6501_4EE9_B791_9DBC98B3C91C
 
 class MouseClickHandler
 {
@@ -8,4 +8,4 @@ public:
     virtual void handleMouseClick(float x, float y) = 0;
 };
 
-#endif // __MOUSECLICKHANDLER_H__
+#endif /* E0C10680_6501_4EE9_B791_9DBC98B3C91C */
