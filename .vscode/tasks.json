@@ -12,8 +12,6 @@
                 "${workspaceFolder}\\src\\*.cpp",
                 "${workspaceFolder}\\src\\glad.c",
                 "-lglfw3dll",
-                "-fdiagnostics-color=always",
-                "-static",
                 "-o",
                 "${workspaceFolder}\\build\\minesweeper.exe",
             ],

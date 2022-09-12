@@ -16,6 +16,5 @@
             "console": "externalTerminal",
             "preLaunchTask": "C++ build solution"
         }
-
     ]
 }
