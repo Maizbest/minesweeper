@@ -7,9 +7,13 @@ out vec3 ourColor;
 // uniform mat4 model = mat4(1.0f);
 // uniform mat4 view = mat4(1.0f);
 uniform mat4 projection = mat4(1.0f);
+uniform float time = 0.0;
 
 void main()
 {
     gl_Position = projection * vec4(aPos, 1.0f);
-    ourColor = aColor;
+    
+    float cosVawe = (cos(time) + 1.0f) / 2.0f;
+    float sinVawe = (sin(time) + 1.0f) / 2.0f;
+    ourColor = vec3(cosVawe, sinVawe, cosVawe);
 }
