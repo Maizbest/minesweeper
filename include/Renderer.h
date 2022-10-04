@@ -5,7 +5,7 @@
 
 #define ASSERT(x)                                                                                                      \
     if (!(x))                                                                                                          \
-        __debugbreak();
+        __debugbreak(); // is it portable?
 
 #define GLCall(x)                                                                                                      \
     GLClearError();                                                                                                    \

@@ -5,10 +5,6 @@ class IndexBuffer
 {
   public:
     IndexBuffer(const unsigned int *data, unsigned int count);
-    // VertexBuffer(VertexBuffer &&) = default; // move
-    // VertexBuffer(const VertexBuffer &) = default; // copy
-    // VertexBuffer &operator=(VertexBuffer &&) = default; // move assignment
-    // VertexBuffer &operator=(const VertexBuffer &) = default; // copy assigned
     ~IndexBuffer();
 
     void Bind();

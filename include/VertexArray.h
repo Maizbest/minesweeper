@@ -8,10 +8,6 @@ class VertexArray
 {
 public:
   VertexArray();
-  // VertexArray(VertexArray &&) = default;
-  // VertexArray(const VertexArray &) = default;
-  // VertexArray &operator=(VertexArray &&) = default;
-  // VertexArray &operator=(const VertexArray &) = default;
   ~VertexArray();
 
   void AddBuffer(const VertexBuffer &buffer, const VertexBufferLayout &layout);

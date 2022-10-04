@@ -6,24 +6,22 @@
 
 VertexArray::VertexArray()
 {
-  std::cout << "Create VAO" << std::endl;
   GLCall(glGenVertexArrays(1, &m_RendererID));
   GLCall(glBindVertexArray(m_RendererID));
 }
 
 VertexArray::~VertexArray()
 {
+  std::cout << "Delete vertex array" << std::endl;
   GLCall(glDeleteVertexArrays(1, &m_RendererID));
 }
 
 void VertexArray::Bind() const
 {
-  std::cout << "Bind VAO" << std::endl;
   glBindVertexArray(m_RendererID);
 }
 void VertexArray::Unbind() const
 {
-  std::cout << "Unbind VAO" << std::endl;
   glBindVertexArray(0);
 };
 

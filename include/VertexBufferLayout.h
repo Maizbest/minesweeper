@@ -42,11 +42,12 @@ public:
   template <typename T>
   void Push(unsigned int count)
   {
-    // static_assert(false);
     ASSERT(false);
   }
 };
 
+
+// must be inlined
 template <>
 inline void VertexBufferLayout::Push<float>(unsigned int count)
 {

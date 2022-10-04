@@ -5,7 +5,7 @@
 
 #include "Renderer.h"
 #include "libgl.h"
-#include "shader_s.h"
+#include "ShaderProgram.h"
 
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
@@ -45,16 +45,21 @@ int main()
       0, 2, 3};
 
   {
-    Shader shader("resources/shaders/vert.glsl", "resources/shaders/frag.glsl");
-
+    ShaderProgram shaderProgram("resources/shaders/vert.glsl", "resources/shaders/frag.glsl");
     VertexArray va;
     VertexBufferLayout layout;
     VertexBuffer vb(vertices.data(), sizeof(Vertex) * vertices.size());
+
     layout.Push<float>(3); // position
     layout.Push<float>(3); // color
     va.AddBuffer(vb, layout);
 
     IndexBuffer ib(indices, 6);
+
+    va.Unbind();
+    vb.Unbind();
+    ib.Unbind();
+    shaderProgram.Unbind();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -63,22 +68,20 @@ int main()
       GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
       GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-      shader.use();
-      shader.setFloat("time", glfwGetTime());
+      shaderProgram.Bind();
+      shaderProgram.SetFloat("time", 2 * (int) (glfwGetTime() / 2));
 
       va.Bind();
-      vb.Bind();
+      // vb.Bind();
       ib.Bind();
 
       GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 
-      glfwSwapBuffers(window);
-      glfwPollEvents();
+      GLCall(glfwSwapBuffers(window));
+      GLCall(glfwPollEvents());
     }
-
-    GLCall(glDeleteProgram(shader.ID));
   }
-  glfwTerminate();
+  GLCall(glfwTerminate());
   return 0;
 }
 
@@ -88,6 +91,7 @@ void init()
   {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
