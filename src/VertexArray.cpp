@@ -1,6 +1,7 @@
 #include "VertexArray.h"
 
 #include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
 #include "Renderer.h"
 #include <iostream>
 
@@ -18,11 +19,11 @@ VertexArray::~VertexArray()
 
 void VertexArray::Bind() const
 {
-  glBindVertexArray(m_RendererID);
+  GLCall(glBindVertexArray(m_RendererID));
 }
 void VertexArray::Unbind() const
 {
-  glBindVertexArray(0);
+  GLCall(glBindVertexArray(0));
 };
 
 void VertexArray::AddBuffer(const VertexBuffer &buffer, const VertexBufferLayout &layout)
@@ -37,8 +38,8 @@ void VertexArray::AddBuffer(const VertexBuffer &buffer, const VertexBufferLayout
   {
     const auto &elem = elements[i];
 
-    glEnableVertexAttribArray(i);
-    glVertexAttribPointer(i, elem.count, elem.type, elem.normalized, layout.GetStride(), (const void *)offset);
+    GLCall(glEnableVertexAttribArray(i));
+    GLCall(glVertexAttribPointer(i, elem.count, elem.type, elem.normalized, layout.GetStride(), (const void *)offset));
 
     offset += elem.count * VertexBufferElement::GetTypeSize(elem.type);
   }

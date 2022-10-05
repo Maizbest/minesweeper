@@ -3,7 +3,7 @@
         {
             "type": "cppbuild",
             "label": "C++ build solution",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "command": "g++",
             "args": [
                 "-g",
                 "-std=c++17",
@@ -11,6 +11,7 @@
                 "-L${workspaceFolder}\\lib",
                 "${workspaceFolder}\\src\\*.cpp",
                 "${workspaceFolder}\\src\\glad.c",
+                "-lopengl32",
                 "-lglfw3dll",
                 "-o",
                 "${workspaceFolder}\\build\\minesweeper.exe",

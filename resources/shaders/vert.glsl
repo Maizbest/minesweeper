@@ -1,19 +1,17 @@
 #version 330 core
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec3 aColor;
+layout (location = 0) in vec3 v_Pos;
+layout (location = 1) in vec3 v_Color;
+layout (location = 2) in vec2 v_TexCoord;
 
-out vec3 ourColor;
+out vec3 Color;
+out vec2 TexCoord;
 
-// uniform mat4 model = mat4(1.0f);
-// uniform mat4 view = mat4(1.0f);
-uniform mat4 projection = mat4(1.0f);
+uniform mat4 u_MVP = mat4(1.0f);
 uniform float time = 0.0;
 
 void main()
 {
-    gl_Position = projection * vec4(aPos, 1.0f);
-    
-    float cosVawe = (cos(time) + 1.0f) / 2.0f;
-    float sinVawe = (sin(time) + 1.0f) / 2.0f;
-    ourColor = vec3(cosVawe, sinVawe, cosVawe);
+    gl_Position = u_MVP * vec4(v_Pos, 1.0f);
+    Color = v_Color;
+    TexCoord = v_TexCoord;
 }

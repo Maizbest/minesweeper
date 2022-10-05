@@ -2,6 +2,7 @@
 #define __VERTEXBUFFERLAYOUT_H__
 
 #include <vector>
+#include <assert.h>
 #include "Renderer.h"
 
 struct VertexBufferElement
@@ -21,7 +22,7 @@ struct VertexBufferElement
     case GL_UNSIGNED_BYTE:
       return 1;
     }
-    ASSERT(false);
+    assert(false);
     return 0;
   }
 };
@@ -42,10 +43,9 @@ public:
   template <typename T>
   void Push(unsigned int count)
   {
-    ASSERT(false);
+    assert(false);
   }
 };
-
 
 // must be inlined
 template <>
